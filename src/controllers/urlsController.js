@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 export async function shorten(req, res) {
   const { authorization } = req.headers;
   const token = authorization?.replace("Bearer ", "");
+  console.log(token);
 
   const { rows: sessions } = await connection.query(
     "SELECT * FROM sessions WHERE token = $1",
