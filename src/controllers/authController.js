@@ -77,7 +77,8 @@ export async function signin(req, res) {
   );
 
   if (userValidation.length < 1 || !comparePassword) {
-    return res.sendStatus(401);
+    res.sendStatus(401);
+    return;
   }
 
   try {
