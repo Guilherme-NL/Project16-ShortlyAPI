@@ -69,14 +69,17 @@ export async function signin(req, res) {
     [user.email]
   );
 
-  console.log(userValidation);
+  if (userValidation.length < 1) {
+    res.sendStatus(401);
+    return;
+  }
 
   const comparePassword = bcrypt.compareSync(
     user.password,
     userValidation[0].password
   );
 
-  if (userValidation.length < 1 || !comparePassword) {
+  if (!comparePassword) {
     res.sendStatus(401);
     return;
   }
